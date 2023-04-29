@@ -2,6 +2,38 @@ import random
 
 size_limit = [5, 15]
 
+
+ships = [
+    {
+        "name": "Aircraft Carrier",
+        "size": 5,
+        "symbol": "A"
+    },
+    {
+        "name": "Battleship",
+        "size": 4,
+        "symbol": "B"
+    },
+    {
+        "name": "Submarine",
+        "size": 3,
+        "symbol": "S"
+    },
+    {
+        "name": "Destroyer",
+        "size": 3,
+        "symbol": "D"
+    },
+    {
+        "name": "Patrol Boat",
+        "size": 2,
+        "symbol": "P"
+    }
+]
+
+hit_symbol = "X"
+miss_symbol = "M"
+
 battlefield = []
 pc_battlefield = []
 
