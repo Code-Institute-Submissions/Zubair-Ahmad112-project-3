@@ -140,3 +140,41 @@ for ship in ships:
                 battlefield[y + i][x] = ship["symbol"]
         print_battlefield()
         break
+
+# Place PC ships
+for ship in ships:
+    while True:
+        direction = random.randint(0, 1)
+        if direction == 0:
+            direction = "H"
+        else:
+            direction = "V"
+        y = random.randint(0, size - 1)
+        x = random.randint(0, size - 1)
+        if direction.upper() == "H":
+            if y + ship["size"] > size:
+                continue
+            retry = False
+            for i in range(ship["size"]):
+                if pc_battlefield[x][y + i] != "O":
+                    retry = True
+                    break
+            if retry:
+                continue
+            for i in range(ship["size"]):
+                pc_battlefield[x][y + i] = ship["symbol"]
+        else:
+            if x + ship["size"] > size:
+                continue
+            retry = False
+            for i in range(ship["size"]):
+                if pc_battlefield[x + i][y] != "O":
+                    retry = True
+                    break
+            if retry:
+                continue
+            for i in range(ship["size"]):
+                pc_battlefield[x + i][y] = ship["symbol"]
+        break
+
+print_pc_battlefield()
