@@ -68,7 +68,7 @@ def print_battlefield():
             print(battlefield[i][j], end=" ")
         print()
 
-def print_pc_battlefield():
+def print_pc_battlefield(show_ships=False):
     print("=====PC BATTLEFIELD=====")
     print("  ", end="")
     for i in range(size):
@@ -77,10 +77,14 @@ def print_pc_battlefield():
     for i in range(size):
         print(chr(i + 65), end=" ")
         for j in range(size):
+            if not show_ships:
+                c = pc_battlefield[i][j]
+                if c == "A" or c == "B" or c == "S" or c == "D" or c == "P":
+                    print("O", end=" ")
+                    continue
             print(pc_battlefield[i][j], end=" ")
         print()
 
-print_pc_battlefield()
 print_battlefield()
 
 # Place ships
@@ -177,4 +181,24 @@ for ship in ships:
                 pc_battlefield[x + i][y] = ship["symbol"]
         break
 
-print_pc_battlefield()
+print_battlefield()
+print_pc_battlefield(True)
+
+print("=====BATTLE START=====")
+print()
+print("A = Aircraft Carrier")
+print("B = Battleship")
+print("S = Submarine")
+print("D = Destroyer")
+print("P = Patrol Boat")
+print("O = Empty")
+print("X = Hit")
+print("M = Miss")
+print()
+
+pc_ships_sunk = []
+ships_sunk = []
+
+for ship in ships:
+    pc_ships_sunk.append(0)
+    ships_sunk.append(0)
