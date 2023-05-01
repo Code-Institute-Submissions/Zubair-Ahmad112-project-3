@@ -1,3 +1,2 @@
 # Your requirements go here
-sys
 random
