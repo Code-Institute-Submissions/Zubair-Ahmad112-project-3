@@ -41,14 +41,17 @@ battlefield = []
 pc_battlefield = []
 
 while True:
-    size = int(input("Enter the size of the battlefield (#x#): "))
-    if size < size_limit[0]:
-        print(f"Please enter a positive integer greater than {size_limit[0] - 1}.")
-        continue
-    if size > size_limit[1]:
-        print(f"Please enter a positive integer less than {size_limit[1]}.")
-        continue
-    break
+    try:
+        size = int(input("Enter the size of the battlefield (#x#): "))
+        if size < size_limit[0]:
+            print(f"Please enter a positive integer greater than {size_limit[0] - 1}.")
+            continue
+        if size > size_limit[1]:
+            print(f"Please enter a positive integer less than {size_limit[1]}.")
+            continue
+        break
+    except ValueError:
+        print("Please enter a positive integer.")
 
 for i in range(size):
     battlefield.append([])
@@ -113,6 +116,9 @@ for ship in ships:
         y = input("Enter the x coordinate: ")
         # Coordinates start FROM ASKII CODE 65
         y = y.upper()
+        if len(y) > 1:
+            print("Please enter a letter.")
+            continue
         y = ord(y)
         y = y - 65
         if y < 0 or y > size - 1:
@@ -122,6 +128,9 @@ for ship in ships:
         x = input("Enter the y coordinate: ")
 
         x = x.upper()
+        if len(x) > 1:
+            print("Please enter a letter.")
+            continue
         x = ord(x)
         x = x - 65
         if x < 0 or x > size - 1:
