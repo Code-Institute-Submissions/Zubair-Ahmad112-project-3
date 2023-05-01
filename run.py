@@ -1,36 +1,37 @@
-""" 
+"""
     This is the main file for the Battleship game.
 """
 
 import random
 import sys
 
-size_limit = [5, 15]
-ships = [{
-    "name": "Aircraft Carrier",
-    "size": 5,
-    "symbol": "A"
-},
-{
-    "name": "Battleship",
-    "size": 4,
-    "symbol": "B"
-},
-{
-    "name": "Submarine",
-    "size": 3,
-    "symbol": "S"
-},
-{
-    "name": "Destroyer",
-    "size": 3,
-    "symbol": "D"
-},
-{
-    "name": "Patrol Boat",
-    "size": 2,
-    "symbol": "P"
-}
+LIMITS = [5, 15]
+ships = [
+    {
+        "name": "Aircraft Carrier",
+        "size": 5,
+        "symbol": "A"
+    },
+    {
+        "name": "Battleship",
+        "size": 4,
+        "symbol": "B"
+    },
+    {
+        "name": "Submarine",
+        "size": 3,
+        "symbol": "S"
+    },
+    {
+        "name": "Destroyer",
+        "size": 3,
+        "symbol": "D"
+    },
+    {
+        "name": "Patrol Boat",
+        "size": 2,
+        "symbol": "P"
+    }
 ]
 
 HIT_SYMBOL = "X"
@@ -43,15 +44,15 @@ pc_battlefield = []
 while True:
     try:
         size = int(input("Enter the size of the battlefield (#x#): "))
-        if size < size_limit[0]:
-            print(f"Please enter a positive integer greater than {size_limit[0] - 1}.")
+        if size < LIMITS[0]:
+            print(f"Please enter a number greater than {LIMITS[0] - 1}.")
             continue
-        if size > size_limit[1]:
-            print(f"Please enter a positive integer less than {size_limit[1]}.")
+        if size > LIMITS[1]:
+            print(f"Please enter a number less than {LIMITS[1]}.")
             continue
         break
     except ValueError:
-        print("Please enter a positive integer.")
+        print("Please enter a number.")
 
 for i in range(size):
     battlefield.append([])
@@ -61,6 +62,7 @@ for i in range(size):
     pc_battlefield.append([])
     for j in range(size):
         pc_battlefield[i].append(EMPTY_SYMBOL)
+
 
 # Prints the battlefield.
 def print_battlefield():
@@ -72,9 +74,10 @@ def print_battlefield():
     print()
     for k in range(size):
         print(chr(k + 65), end=" ")
-        for l in range(size):
-            print(battlefield[k][l], end=" ")
+        for j in range(size):
+            print(battlefield[k][j], end=" ")
         print()
+
 
 def print_pc_battlefield(show_ships=False):
     """
@@ -89,9 +92,9 @@ def print_pc_battlefield(show_ships=False):
     print()
     for k in range(size):
         print(chr(k + 65), end=" ")
-        for l in range(size):
+        for j in range(size):
             if not show_ships:
-                current_char = pc_battlefield[k][l]
+                current_char = pc_battlefield[k][j]
                 skip = False
                 for ship in ships:
                     if current_char == ship["symbol"]:
@@ -100,8 +103,9 @@ def print_pc_battlefield(show_ships=False):
                         break
                 if skip:
                     continue
-            print(pc_battlefield[k][l], end=" ")
+            print(pc_battlefield[k][j], end=" ")
         print()
+
 
 print_battlefield()
 
@@ -266,7 +270,7 @@ while True:
 
                     # Check if all ships are sunk
                     ALL_SUNK = True
-                    for j,ship2 in enumerate(ships):
+                    for j, ship2 in enumerate(ships):
                         if ships_sunk[j] != ship2["size"]:
                             ALL_SUNK = False
                             break
