@@ -290,7 +290,6 @@ class Battleship:
         self.print_battlefield()
         self.place_ships()
         self.place_pc_ships()
-        self.print_battlefield()
         self.print_pc_battlefield()
         while True:
             self.user_turn()
@@ -301,6 +300,9 @@ class Battleship:
             if self.check_if_game_over(True):
                 print("PC won.")
                 break
+            else:
+                self.print_battlefield()
+                self.print_pc_battlefield()
         self.print_battlefield()
         self.print_pc_battlefield(True)
         print("Game over.")
